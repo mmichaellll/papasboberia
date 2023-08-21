@@ -82,12 +82,11 @@ function sealSwitch() {
   drawSealScene();
 }
 
-// Add this code to show buttons after 5 seconds
-const buttons = document.querySelectorAll('#buttons button');
-buttons.forEach(button => button.style.display = 'none');
+const buttons = document.getElementById('buttons');
+buttons.style.display = 'none';
 
 setTimeout(() => {
-  buttons.forEach(button => button.style.display = 'block');
+  buttons.style.display = 'flex';
 }, 5000);
 
 // Draw on load
@@ -107,6 +106,7 @@ window.addEventListener("load", () => {
   setTimeout(() => {
     hasDrawn = false;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawOrderScene();
   }, 5000);
 });
 

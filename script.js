@@ -1,7 +1,6 @@
 // Get canvas and context
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-const buttons = document.getElementById("buttons");
 
 // Load images
 const exterior = new Image();
@@ -83,7 +82,13 @@ function sealSwitch() {
   drawSealScene();
 }
 
+// Add this code to show buttons after 5 seconds
+const buttons = document.querySelectorAll('#buttons button');
+buttons.forEach(button => button.style.display = 'none');
 
+setTimeout(() => {
+  buttons.forEach(button => button.style.display = 'block');
+}, 5000);
 
 // Draw on load
 window.addEventListener("load", () => {

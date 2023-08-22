@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "interactjs": "^1.10.18",
     "vite": "^4.2.1"
   }
 }

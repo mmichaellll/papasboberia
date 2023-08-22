@@ -1,3 +1,5 @@
+import interact from 'interactjs'
+
 // Get canvas and context
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");

@@ -1,8 +1,8 @@
-import interact from 'interactjs'
-
 // Get canvas and context
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const canvasCusL = document.getElementById("customers")
+const cusL = canvasCusL.getContext("2d")
 
 // Load images
 const exterior = new Image();
@@ -18,12 +18,19 @@ const brewScene = new Image();
 brewScene.src = "images/scenes/brewstation.png";
 
 const toppingsScene = new Image();
-toppingsScene.src = "images/scenes/toppingstation.png";
+toppingsScene.src = "images/scenes/toppingsstation.png";
 
 const sealScene = new Image();
 sealScene.src = "images/scenes/sealstation.png";
 
+const wally = new Image();
+wally.src = "images/characters/wally.webp"
+
+
+
 let hasDrawn = false;
+
+// const menuButtons = docment.getElementById("buttons")
 
 class Button {
   constructor(elementId, switchFunction) {
@@ -132,4 +139,50 @@ function drawDayOne() {
   const x = canvas.width / 2 - dayone.width / 2;
   const y = canvas.height - dayone.height;
   ctx.drawImage(dayone, x, y);
+}
+
+
+function move () {
+  ctx.drawImage(wally, 0, 0, canvas.width, canvas.height);
+  wally.classList.toggle("move")
+}
+
+let cusImages = ["images/characters/wally.webp"]
+let cusOrder = [] // master array one of each 
+let cusNum = undefined
+
+const opt = {
+  teabase: ["black tea", "green tea"],
+  toppings: ["tapioca pearls", "strawberry popping pearls", "mango popping pearls", "strawberry pearls", "grape jelly"],
+  sugarlevel: ["20%", "50%", "75%", "100%"],
+  icelevel: ["20%", "50%", "75%", "100%"],
+  size: ["small", "large"],
+  milk: ["milk", "no milk", "milk powder"]
+}
+
+function getRandomOptions() {
+  // math.random * array.length
+  let teabaseLength = opt.teabase.length
+  let toppingsLength = opt.toppings.length
+  let sugarlevelLength = opt.sugarlevel.length
+  let icelevelLength = opt.icelevel.length
+  let sizeLength = opt.sizelength.length
+  let milkLength = opt.milk.length
+
+  let teabaseOption = round(Math.random() * teabaseLength)
+  // let teabaseOption = round(Math.random() * teabaseLength)
+  // let teabaseOption = round(Math.random() * teabaseLength)
+  // let teabaseOption = round(Math.random() * teabaseLength)
+  // let teabaseOption = round(Math.random() * teabaseLength)
+  // let teabaseOption = round(Math.random() * teabaseLength)
+  
+}
+
+
+
+class customers {
+  constructor(image, order){
+    this.image = cusImages[cusNum]
+    this.order = cusOrder[undefined]
+  }
 }

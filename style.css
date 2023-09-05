@@ -19,13 +19,13 @@ body, html {
   width: 100%;
   display: flex;
   justify-content: space-around;
-  background-color: #ccc;
+  background-color: #3c3432;
   padding: 10px 0;
 }
 
 button {
   padding: 10px 20px;
-  background: #fff;
+  background:none;
   border-radius: 4px;
   border: none;
   font-size: 16px;
@@ -33,5 +33,20 @@ button {
 }
 
 button.active {
-  background-color: #eee;
+box-shadow: 0px 0px 36px 12px rgba(211,224,13,0.37) inset;
+-webkit-box-shadow: 0px 0px 36px 12px rgba(211,224,13,0.37) inset;
+-moz-box-shadow: 0px 0px 36px 12px rgba(211,224,13,0.37) inset;
+}
+
+.menubutton {
+  max-width:100%;
+  height:auto;
+}
+
+.image {
+  transition-duration: 2s;
+}
+
+.move {
+  left: calc(100% - 200px);
 }

@@ -1,8 +1,8 @@
 // Get canvas and context
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-const canvasCusL = document.getElementById("customers")
-const cusL = canvasCusL.getContext("2d")
+const canvasCusL = document.getElementById("customers");
+const cusL = canvasCusL.getContext("2d");
 
 // Load images
 const exterior = new Image();
@@ -24,9 +24,7 @@ const sealScene = new Image();
 sealScene.src = "images/scenes/sealstation.png";
 
 const wally = new Image();
-wally.src = "images/characters/wally.webp"
-
-
+wally.src = "images/characters/wally.webp";
 
 let hasDrawn = false;
 
@@ -34,26 +32,24 @@ let hasDrawn = false;
 
 class Button {
   constructor(elementId, switchFunction) {
-      this.element = document.getElementById(elementId);
-      this.switchFunction = switchFunction;
-      this.element.addEventListener('click', () => {
-          // Remove 'active' class from all buttons
-          const buttons = document.querySelectorAll('#buttons button');
-          buttons.forEach(button => button.classList.remove('active'));
-          // Add 'active' class to clicked button
-          this.element.classList.add('active');
-          // Call switch function
-          this.switchFunction();
-      });
+    this.element = document.getElementById(elementId);
+    this.switchFunction = switchFunction;
+    this.element.addEventListener("click", () => {
+      // Remove 'active' class from all buttons
+      const buttons = document.querySelectorAll("#buttons button");
+      buttons.forEach((button) => button.classList.remove("active"));
+      // Add 'active' class to clicked button
+      this.element.classList.add("active");
+      // Call switch function
+      this.switchFunction();
+    });
   }
 }
 
-const orderButton = new Button('order', orderSwitch);
-const brewButton = new Button('brew', brewSwitch);
-const toppingsButton = new Button('toppings', toppingsSwitch);
-const sealButton = new Button('seal', sealSwitch);
-
-
+const orderButton = new Button("order", orderSwitch);
+const brewButton = new Button("brew", brewSwitch);
+const toppingsButton = new Button("toppings", toppingsSwitch);
+const sealButton = new Button("seal", sealSwitch);
 
 function drawOrderScene() {
   ctx.drawImage(orderScene, 0, 0, canvas.width, canvas.height);
@@ -91,11 +87,11 @@ function sealSwitch() {
   drawSealScene();
 }
 
-const buttons = document.getElementById('buttons');
-buttons.style.display = 'none';
+const buttons = document.getElementById("buttons");
+buttons.style.display = "none";
 
 setTimeout(() => {
-  buttons.style.display = 'flex';
+  buttons.style.display = "flex";
 }, 5000);
 
 // Draw on load
@@ -141,48 +137,71 @@ function drawDayOne() {
   ctx.drawImage(dayone, x, y);
 }
 
-
-function move () {
+function move() {
   ctx.drawImage(wally, 0, 0, canvas.width, canvas.height);
-  wally.classList.toggle("move")
+  wally.classList.toggle("move");
 }
 
-let cusImages = ["images/characters/wally.webp"]
-let cusOrder = [] // master array one of each 
-let cusNum = undefined
 
 const opt = {
   teabase: ["black tea", "green tea"],
-  toppings: ["tapioca pearls", "strawberry popping pearls", "mango popping pearls", "strawberry pearls", "grape jelly"],
+  toppings: [
+    "tapioca pearls",
+    "strawberry popping pearls",
+    "mango popping pearls",
+    "strawberry pearls",
+    "grape jelly",
+  ],
   sugarlevel: ["20%", "50%", "75%", "100%"],
   icelevel: ["20%", "50%", "75%", "100%"],
   size: ["small", "large"],
-  milk: ["milk", "no milk", "milk powder"]
-}
-
-function getRandomOptions() {
-  // math.random * array.length
-  let teabaseLength = opt.teabase.length
-  let toppingsLength = opt.toppings.length
-  let sugarlevelLength = opt.sugarlevel.length
-  let icelevelLength = opt.icelevel.length
-  let sizeLength = opt.sizelength.length
-  let milkLength = opt.milk.length
-
-  let teabaseOption = round(Math.random() * teabaseLength)
-  // let teabaseOption = round(Math.random() * teabaseLength)
-  // let teabaseOption = round(Math.random() * teabaseLength)
-  // let teabaseOption = round(Math.random() * teabaseLength)
-  // let teabaseOption = round(Math.random() * teabaseLength)
-  // let teabaseOption = round(Math.random() * teabaseLength)
-  
-}
+  milk: ["milk", "no milk", "milk powder"],
+};
 
 
-
-class customers {
-  constructor(image, order){
-    this.image = cusImages[cusNum]
-    this.order = cusOrder[undefined]
+class Customer {
+  constructor(image, order) {
+    this.image = image;
+    this.order = order;
   }
 }
+
+function getRandomOrder() {
+  let teabaseLength = opt.teabase.length;
+  let toppingsLength = opt.toppings.length;
+  let sugarlevelLength = opt.sugarlevel.length;
+  let icelevelLength = opt.icelevel.length;
+  let sizeLength = opt.size.length;
+  let milkLength = opt.milk.length;
+
+  let teabaseOption = Math.round(Math.random() * (teabaseLength - 1));
+  let toppingsOption = Math.round(Math.random() * (toppingsLength - 1));
+  let sugarlevelOption = Math.round(Math.random() * (sugarlevelLength - 1));
+  let icelevelOption = Math.round(Math.random() * (icelevelLength - 1));
+  let sizeOption = Math.round(Math.random() * (sizeLength - 1));
+  let milkOption = Math.round(Math.random() * (milkLength - 1));
+
+  let order = {
+    teabase: opt.teabase[teabaseOption],
+    toppings: opt.toppings[toppingsOption],
+    sugarlevel: opt.sugarlevel[sugarlevelOption],
+    icelevel: opt.icelevel[icelevelOption],
+    size: opt.size[sizeOption],
+    milk: opt.milk[milkOption],
+  };
+
+  return order;
+}
+
+let cusImages = ["images/characters/wally.webp"];
+let cusOrder = []; // master array one of each
+
+function generateCustomer() {
+  let order = getRandomOrder();
+  let cusNum = Math.floor(Math.random() * cusImages.length);
+  let customer = new Customer(cusImages[cusNum], order);
+  return customer;
+}
+
+let customer = generateCustomer();
+console.log(customer);

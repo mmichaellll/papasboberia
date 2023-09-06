@@ -194,7 +194,6 @@ function getRandomOrder() {
 }
 
 let cusImages = ["images/characters/wally.webp"];
-let cusOrder = []; // master array one of each
 
 function generateCustomer() {
   let order = getRandomOrder();

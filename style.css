@@ -12,6 +12,15 @@ body, html {
   top: 0px;
   left: 0px;
 }
+#customers {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+
 
 #buttons {
   position: fixed;
@@ -36,4 +45,12 @@ button.active {
 box-shadow: 0px 0px 36px 12px rgba(211,224,13,0.37) inset;
 -webkit-box-shadow: 0px 0px 36px 12px rgba(211,224,13,0.37) inset;
 -moz-box-shadow: 0px 0px 36px 12px rgba(211,224,13,0.37) inset;
+}
+
+#orderticket {
+  display: flex;
+  width: 500px;
+  height: 700px;
+  background-color: #3c3432;
+  position: relative
 }

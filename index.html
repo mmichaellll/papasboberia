@@ -1,31 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Papas Boberia</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Papas Boberia</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
-</head>
-
-<body>
-  <canvas id="canvas"></canvas>
-  <canvas id="orderCanvas"></canvas>
-  <canvas id="brewCanvas"></canvas>
-  <canvas id="toppingsCanvas"></canvas>
-  <canvas id="sealCanvas"></canvas>
-  <canvas id="customers"><canvas>
-
-  <div id="buttons">
-        <button id="order"><img class="menubutton" id="orderbutton" src="images/button/orderbutton.png" /></button>
-        <button id="brew"><img class="menubutton" id="brewbutton" src="images/button/brewbutton.png" /></button>
-        <button id="toppings"><img class="menubutton" id="topingbutton"
-            src="images/button/toppingbutton.png" /></button>
-        <button id="seal"><img class="menubutton" id="sealbutton" src="images/button/sealbutton.png" /></button>
-  </div>
-
-      <script src="script.js"></script>
-</body>
-
+  <body>
+    <canvas id="canvas"></canvas>
+    <canvas id="orderCanvas"></canvas>
+    <canvas id="brewCanvas"></canvas>
+    <canvas id="toppingsCanvas"></canvas>
+    <canvas id="sealCanvas"></canvas>
+    <canvas id="customers"></canvas>
+    <div id="buttons">
+      <button id="order">
+        <img
+          class="menubutton"
+          id="orderbutton"
+          src="images/button/orderbutton.png"
+        />
+      </button>
+      <button id="brew">
+        <img
+          class="menubutton"
+          id="brewbutton"
+          src="images/button/brewbutton.png"
+        />
+      </button>
+      <button id="toppings">
+        <img
+          class="menubutton"
+          id="topingbutton"
+          src="images/button/toppingbutton.png"
+        />
+      </button>
+      <button id="seal">
+        <img
+          class="menubutton"
+          id="sealbutton"
+          src="images/button/sealbutton.png"
+        />
+      </button>
+    </div>
+    <div id="orderticket"></div>
+    <script src="script.js"></script>
+  </body>
 </html>

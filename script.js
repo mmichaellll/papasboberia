@@ -28,6 +28,8 @@ wally.src = "images/characters/wally.webp";
 
 let hasDrawn = false;
 
+const buttons = document.getElementById("buttons");
+
 // const menuButtons = docment.getElementById("buttons")
 
 class Button {
@@ -87,7 +89,6 @@ function sealSwitch() {
   drawSealScene();
 }
 
-const buttons = document.getElementById("buttons");
 buttons.style.display = "none";
 
 setTimeout(() => {
@@ -204,3 +205,23 @@ function generateCustomer() {
 
 let customer = generateCustomer();
 console.log(customer);
+
+let orderticket = document.getElementById("orderticket");
+
+orderticket.style.scale = "0.75";
+orderticket.style.transform = "translate(800px, -200px)";
+
+orderticket.innerHTML = `
+  <div style="display: flex; align-items: center;">
+    <img src="${customer.image}" alt="customer" style="width: 100px; height: 100px; margin-right: 10px;">
+    <div>
+      <p style="font-size: 24px; margin-bottom: 5px;">Order:</p>
+      <p style="font-size: 18px; margin-bottom: 5px;">Tea Base: ${customer.order.teabase}</p>
+      <p style="font-size: 18px; margin-bottom: 5px;">Toppings: ${customer.order.toppings}</p>
+      <p style="font-size: 18px; margin-bottom: 5px;">Sugar Level: ${customer.order.sugarlevel}</p>
+      <p style="font-size: 18px; margin-bottom: 5px;">Ice Level: ${customer.order.icelevel}</p>
+      <p style="font-size: 18px; margin-bottom: 5px;">Size: ${customer.order.size}</p>
+      <p style="font-size: 18px; margin-bottom: 5px;">Milk: ${customer.order.milk}</p>
+    </div>
+  </div>
+`;

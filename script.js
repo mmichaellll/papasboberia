@@ -143,7 +143,6 @@ function move() {
   wally.classList.toggle("move");
 }
 
-
 const opt = {
   teabase: ["black tea", "green tea"],
   toppings: [
@@ -158,7 +157,6 @@ const opt = {
   size: ["small", "large"],
   milk: ["milk", "no milk", "milk powder"],
 };
-
 
 class Customer {
   constructor(image, order) {
@@ -196,32 +194,97 @@ function getRandomOrder() {
 
 let cusImages = ["images/characters/wally.webp"];
 
-function generateCustomer() {
+// let x = 1186;
+// let y = 450;
+
+function generateCustomer(x, y) {
   let order = getRandomOrder();
   let cusNum = Math.floor(Math.random() * cusImages.length);
   let customer = new Customer(cusImages[cusNum], order);
+  customer.x = x;
+  customer.y = y;
   return customer;
 }
 
-let customer = generateCustomer();
+function randomImage() {
+  const cusImg = new Image();
+  let cusNum = Math.floor(Math.random() * cusImages.length);
+  cusImg.src = cusImages[cusNum];
+  return cusImg;
+}
+
+let customer = generateCustomer(1186, 444);
 console.log(customer);
+
 
 let orderticket = document.getElementById("orderticket");
 
-orderticket.style.scale = "0.75";
-orderticket.style.transform = "translate(800px, -200px)";
+orderticket.style.scale = "0.8";
+orderticket.style.transform = "translateX(200px)";
+
+const titleFontSize = "45px";
+const detailFontSize = "40px";
 
 orderticket.innerHTML = `
-  <div style="display: flex; align-items: center;">
-    <img src="${customer.image}" alt="customer" style="width: 100px; height: 100px; margin-right: 10px;">
+  <div style="display: flex; align-items: center; margin-right:10px;">
     <div>
-      <p style="font-size: 24px; margin-bottom: 5px;">Order:</p>
-      <p style="font-size: 18px; margin-bottom: 5px;">Tea Base: ${customer.order.teabase}</p>
-      <p style="font-size: 18px; margin-bottom: 5px;">Toppings: ${customer.order.toppings}</p>
-      <p style="font-size: 18px; margin-bottom: 5px;">Sugar Level: ${customer.order.sugarlevel}</p>
-      <p style="font-size: 18px; margin-bottom: 5px;">Ice Level: ${customer.order.icelevel}</p>
-      <p style="font-size: 18px; margin-bottom: 5px;">Size: ${customer.order.size}</p>
-      <p style="font-size: 18px; margin-bottom: 5px;">Milk: ${customer.order.milk}</p>
+      <p style="font-size: ${titleFontSize}; margin-bottom: 10px; margin-top:10px">Order:</p>
+      <p style="font-size: ${detailFontSize}; margin-bottom: 5px;">Tea Base: ${customer.order.teabase}</p>
+      <p style="font-size: ${detailFontSize}; margin-bottom: 5px;">Toppings: ${customer.order.toppings}</p>
+      <p style="font-size: ${detailFontSize}; margin-bottom: 5px;">Sugar Level: ${customer.order.sugarlevel}</p>
+      <p style="font-size: ${detailFontSize}; margin-bottom: 5px;">Ice Level: ${customer.order.icelevel}</p>
+      <p style="font-size: ${detailFontSize}; margin-bottom: 5px;">Size: ${customer.order.size}</p>
+      <p style="font-size: ${detailFontSize}; margin-bottom: 5px;">Milk: ${customer.order.milk}</p>
     </div>
   </div>
 `;
+
+let cusImg;
+
+function drawCustomer(customer) {
+  const cusImgTemp = new Image();
+  cusImgTemp.onload = function() {
+    const aspectRatio = cusImgTemp.width / cusImgTemp.height;
+    const height = 200;
+    const width = height * aspectRatio;
+    cusL.drawImage(cusImgTemp, customer.x, customer.y, width, height);
+    console.log("Customer image drawn on canvas");
+
+    // Create div with customer image
+    const cusDiv = document.createElement("div");
+    cusDiv.style.backgroundImage = `url(${customer.image})`;
+    cusDiv.style.width = `${width}px`;
+    cusDiv.style.height = `${height}px`;
+    cusDiv.style.position = "absolute";
+    cusDiv.style.left = `${customer.x}px`;
+    cusDiv.style.top = `${customer.y}px`;
+    cusDiv.style.backgroundSize = "contain";
+    cusDiv.addEventListener("click", function() {
+      orderticket.style.display = "flex";
+    });
+    document.body.appendChild(cusDiv);
+  };
+  cusImgTemp.src = customer.image;
+  cusImg = cusImgTemp;
+}
+console.log(customer.image);
+console.log(cusImg.complete);
+console.log(cusL.canvas);
+setTimeout(() => {
+  drawCustomer(customer);
+}, 6000);
+
+// function getMousePos(canvas, evt) {
+//   const rect = canvas.getBoundingClientRect();
+//   return {
+//     x: evt.clientX - rect.left,
+//     y: evt.clientY - rect.top
+//   };
+// }
+
+// canvasCusL.addEventListener('click', function(evt) {
+//   const mousePos = getMousePos(canvas, evt);
+//   console.log(mousePos.x, mousePos.y);
+// }, false);
+
+
